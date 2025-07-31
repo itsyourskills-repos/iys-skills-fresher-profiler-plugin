@@ -2,16 +2,16 @@ var isLoginUser = JSON?.parse(localStorage?.getItem("loginUserDetail"))
   ? true
   : false;
 console.log("LoginUser", isLoginUser);
-const ENDPOINT_URL = "https://lambdaapi.iysskillstech.com/latest/dev-api/";
-const loggedInUserApiEndpoint = `https://api.myskillsplus.com/get-skills/`;
-const loggedInUserAddSkill = `https://api.myskillsplus.com/add-skills/`;
-const deleteSkillApiEndpoint = `https://api.myskillsplus.com/delete-skill/`;
+const ENDPOINT_URL = "https://uat-lambdaapi.iysskillstech.com/latest/dev-api/";
+const loggedInUserApiEndpoint = `https://uat-api.myskillsplus.com/get-skills/`;
+const loggedInUserAddSkill = `https://uat-api.myskillsplus.com/add-skills/`;
+const deleteSkillApiEndpoint = `https://uat-api.myskillsplus.com/delete-skill/`;
 const getaccessYokenEndpoint =
-  "https://api.myskillsplus.com/api/token/refresh/";
+  "https://uat-api.myskillsplus.com/api/token/refresh/";
 const getAccessToken = JSON.parse(localStorage.getItem("tokenData"));
 const logginUserDetail = JSON.parse(localStorage.getItem("loginUserDetail"));
 const imagePath =
-  "https://cdn.jsdelivr.net/gh/itsyourskills-repos/iys-skills-profiler-plugin@main/assets/img/";
+  "https://cdn.jsdelivr.net/gh/itsyourskills-repos/iys-skills-profiler-plugin@uatplugin/assets/img/";
 // const configuratorvalue=localStorage.setItem('iys', JSON.stringify({
 //   tap: "all",
 //   profile_view: "all",
@@ -1215,7 +1215,7 @@ function ResetButton(htmlElement, disabled) {
 // Function to handle API calling for  "Add Skill" button click
 function addSkillToApi(payload) {
   // API endpoint (replace with your actual API endpoint)
-  const apiEndpoint = `https://lambdaapi.iysskillstech.com/latest/dev-api/add-skill`;
+  const apiEndpoint = `https://uat-lambdaapi.iysskillstech.com/latest/dev-api/add-skill`;
   // Make the API call using the fetch API
   return fetch(apiEndpoint, {
     method: "POST",
@@ -2132,7 +2132,7 @@ class IysSearchPlugin {
     }
 
     if (isLoginUser && this.searchValue.length > 0) {
-      let authApiUrl = `https://api.myskillsplus.com/api-search/?q=${encodedSearchValue}`;
+      let authApiUrl = `https://uat-api.myskillsplus.com/api-search/?q=${encodedSearchValue}`;
       if (skillId) {
         authApiUrl += `&path=${skillId}`;
       }
@@ -2314,6 +2314,7 @@ class IysFunctionalAreasPlugin extends IysSearchPlugin {
 
     popup.style.left = `${left}px`;
     popup.style.top = `${top}px`;
+
     // Function to hide popup when clicking outside
     function hidePopupOnClickOutside(event) {
         if (!popup.contains(event.target)) {
@@ -2641,7 +2642,7 @@ class IysFunctionalAreasPlugin extends IysSearchPlugin {
 
     //   if (!query) {
     //       console.log("Fetching all top-level skills...");
-    //       fetch(`https://lambdaapi.iysskillstech.com/latest/dev-api/search-category-skills/?limit=10`,{ signal: controller.signal })
+    //       fetch(`https://uat-lambdaapi.iysskillstech.com/latest/dev-api/search-category-skills/?limit=10`,{ signal: controller.signal })
     //           .then(response => response.json())
     //           .then(response => {
     //               dropdownMenu.innerHTML = "";
@@ -2674,7 +2675,7 @@ class IysFunctionalAreasPlugin extends IysSearchPlugin {
     //           });
     //   } else {
     //       console.log("Searching for:", query);
-    //       fetch(`https://lambdaapi.iysskillstech.com/latest/dev-api/search-category-skills/?q=${encodeURIComponent(query)}&limit=10`,{ signal: controller.signal })
+    //       fetch(`https://uat-lambdaapi.iysskillstech.com/latest/dev-api/search-category-skills/?q=${encodeURIComponent(query)}&limit=10`,{ signal: controller.signal })
     //           .then(response => response.json())
     //           .then(response => {
     //               dropdownMenu.innerHTML = "";
@@ -2697,7 +2698,7 @@ class IysFunctionalAreasPlugin extends IysSearchPlugin {
                 
     //                     if (skillPathParts.length > 1 && skill.path_addr[0] !== ".") {
     //                         // Fetch all ancestors and expand them in order
-    //                         fetch(`https://lambdaapi.iysskillstech.com/latest/dev-api/cat-tree/?path_addr=${skill.path_addr}`)
+    //                         fetch(`https://uat-lambdaapi.iysskillstech.com/latest/dev-api/cat-tree/?path_addr=${skill.path_addr}`)
     //                             .then(res => res.json())
     //                             .then(treeData => {
     //                                 if (treeData.ancestors.length > 0) {
@@ -2800,7 +2801,7 @@ class IysFunctionalAreasPlugin extends IysSearchPlugin {
     //       return;
     //   }
   
-    //   fetch(`https://lambdaapi.iysskillstech.com/latest/dev-api/cat-children/?path_addr=${pathAddr}&limit=200&offset=0`)
+    //   fetch(`https://uat-lambdaapi.iysskillstech.com/latest/dev-api/cat-children/?path_addr=${pathAddr}&limit=200&offset=0`)
     //       .then(response => response.json())
     //       .then(children => {
     //           if (!children.length) return;
@@ -2983,7 +2984,7 @@ class IysFunctionalAreasPlugin extends IysSearchPlugin {
         if (!isLast) {
             breadcrumbItem.addEventListener("click", (event) => {
               event.stopPropagation();
-              fetch(`https://lambdaapi.iysskillstech.com/latest/dev-api/cat-tree/?path_addr=${skill.path_addr}`)
+              fetch(`https://uat-lambdaapi.iysskillstech.com/latest/dev-api/cat-tree/?path_addr=${skill.path_addr}`)
                   .then(res => res.json())
                   .then(treeData => {
                       if (treeData.ancestors.length > 0) {
@@ -3055,7 +3056,7 @@ class IysFunctionalAreasPlugin extends IysSearchPlugin {
         let controller = new AbortController();
         activeFetchRequest = controller;
         
-        fetch(`https://lambdaapi.iysskillstech.com/latest/dev-api/cat-children/?path_addr=${pathAddr}&limit=200&offset=0`, 
+        fetch(`https://uat-lambdaapi.iysskillstech.com/latest/dev-api/cat-children/?path_addr=${pathAddr}&limit=200&offset=0`, 
               { signal: controller.signal })
             .then(response => response.json())
             .then(children => {
@@ -3101,8 +3102,8 @@ class IysFunctionalAreasPlugin extends IysSearchPlugin {
       activeFetchRequest = controller;
       
       const url = query 
-          ? `https://lambdaapi.iysskillstech.com/latest/dev-api/search-category-skills/?q=${encodeURIComponent(query)}&limit=10`
-          : `https://lambdaapi.iysskillstech.com/latest/dev-api/search-category-skills/?limit=10`;
+          ? `https://uat-lambdaapi.iysskillstech.com/latest/dev-api/search-category-skills/?q=${encodeURIComponent(query)}&limit=10`
+          : `https://uat-lambdaapi.iysskillstech.com/latest/dev-api/search-category-skills/?limit=10`;
       
       fetch(url, { signal: controller.signal })
           .then(response => response.json())
@@ -3125,7 +3126,7 @@ class IysFunctionalAreasPlugin extends IysSearchPlugin {
                   // If searching, fetch paths for all matching skills first
                   if (query) {
                     Promise.all(sortedSkills.map(skill => {
-                      return fetch(`https://lambdaapi.iysskillstech.com/latest/dev-api/cat-tree/?path_addr=${skill.path_addr}`)
+                      return fetch(`https://uat-lambdaapi.iysskillstech.com/latest/dev-api/cat-tree/?path_addr=${skill.path_addr}`)
                           .then(res => res.json())
                           .then(treeData => {
                               return {
@@ -3213,7 +3214,7 @@ class IysFunctionalAreasPlugin extends IysSearchPlugin {
                         });
                         
                         Object.entries(skillsGroupedByParent).forEach(([parentPathAddr, {ancestors, matchedSkills}]) => {
-                          fetch(`https://lambdaapi.iysskillstech.com/latest/dev-api/cat-children/?path_addr=${parentPathAddr}&limit=200&offset=0`)
+                          fetch(`https://uat-lambdaapi.iysskillstech.com/latest/dev-api/cat-children/?path_addr=${parentPathAddr}&limit=200&offset=0`)
                               .then(res => res.json())
                               .then(siblingSkills => {
                                   const sortedSiblings = siblingSkills.sort((a, b) => {
@@ -3344,7 +3345,7 @@ class IysFunctionalAreasPlugin extends IysSearchPlugin {
           
           pill.addEventListener("click", (e) => {
               e.stopPropagation();
-              fetch(`https://lambdaapi.iysskillstech.com/latest/dev-api/cat-tree/?path_addr=${skill.path_addr}`)
+              fetch(`https://uat-lambdaapi.iysskillstech.com/latest/dev-api/cat-tree/?path_addr=${skill.path_addr}`)
                   .then(res => res.json())
                   .then(treeData => {
                       if (treeData.ancestors.length > 0) {
@@ -3439,7 +3440,7 @@ class IysFunctionalAreasPlugin extends IysSearchPlugin {
     // Function to fetch and populate options
     async function fetchSoftSkills() {
         try {
-            const response = await fetch("https://lambdaapi.iysskillstech.com/latest/dev-api/listout-soft-skills/");
+            const response = await fetch("https://uat-lambdaapi.iysskillstech.com/latest/dev-api/listout-soft-skills/");
             if (!response.ok) {
                 throw new Error("Network response was not ok");
             }
@@ -4699,7 +4700,7 @@ class IysFunctionalAreasPlugin extends IysSearchPlugin {
   SkillChildrenAPI(skillFileId) {
     let url;
     if (isLoginUser) {
-      url = `https://api.myskillsplus.com/api-child/?path_addr=${skillFileId}`;
+      url = `https://uat-api.myskillsplus.com/api-child/?path_addr=${skillFileId}`;
     } else {
       url = `${ENDPOINT_URL}children/?path_addr=${skillFileId}`;
     }
@@ -8160,7 +8161,7 @@ class IysFunctionalAreasPlugin extends IysSearchPlugin {
       // skillIdElement.appendChild(loader);
 
       let url = isLoginUser
-        ? `https://api.myskillsplus.com/api-child/?path_addr=${pathAddr}`
+        ? `https://uat-api.myskillsplus.com/api-child/?path_addr=${pathAddr}`
         : `${ENDPOINT_URL}children/?path_addr=${pathAddr}`;
 
       fetch(url, {
@@ -8239,7 +8240,7 @@ class IysFunctionalAreasPlugin extends IysSearchPlugin {
       // selectedSkillDiv.appendChild(loader);
 
       let url = isLoginUser
-        ? `https://api.myskillsplus.com/api-child/?path_addr=${pathAddr}`
+        ? `https://uat-api.myskillsplus.com/api-child/?path_addr=${pathAddr}`
         : `${ENDPOINT_URL}children/?path_addr=${pathAddr}`;
 
       fetch(url, {
@@ -8391,7 +8392,7 @@ class IysFunctionalAreasPlugin extends IysSearchPlugin {
     console.log(skillId);
     let url = "";
     if (isLoginUser) {
-      url = `https://api.myskillsplus.com/api-tree/?path_addr=${skillId}`;
+      url = `https://uat-api.myskillsplus.com/api-tree/?path_addr=${skillId}`;
       fetch(url, {
         method: "GET",
         headers: {
