@@ -11,7 +11,7 @@ const getaccessYokenEndpoint =
 const getAccessToken = JSON.parse(localStorage.getItem("tokenData"));
 const logginUserDetail = JSON.parse(localStorage.getItem("loginUserDetail"));
 const imagePath =
-  "https://cdn.jsdelivr.net/gh/itsyourskills-repos/iys-skills-profiler-plugin@uatplugin/assets/img/";
+  "https://cdn.jsdelivr.net/gh/itsyourskills-repos/iys-skills-fresher-profiler-plugin@uat/assets/img/";
 // const configuratorvalue=localStorage.setItem('iys', JSON.stringify({
 //   tap: "all",
 //   profile_view: "all",
@@ -2122,7 +2122,7 @@ class IysSearchPlugin {
     div.innerHTML = ""; // Clear previous content
     div.appendChild(loader);
     const encodedSearchValue = encodeURIComponent(this.searchValue.trim());
-    let apiUrl = `${ENDPOINT_URL}?q=${encodedSearchValue}&limit=10`;
+    let apiUrl = `${ENDPOINT_URL}?q=${encodedSearchValue}&limit=10&asso_key=AF`;
     if (skillId) {
         apiUrl += `&path=${skillId}`;
     }
@@ -2132,7 +2132,7 @@ class IysSearchPlugin {
     }
 
     if (isLoginUser && this.searchValue.length > 0) {
-      let authApiUrl = `https://uat-api.myskillsplus.com/api-search/?q=${encodedSearchValue}`;
+      let authApiUrl = `https://uat-api.myskillsplus.com/api-search/?q=${encodedSearchValue}&asso_key=AF`;
       if (skillId) {
         authApiUrl += `&path=${skillId}`;
       }
@@ -2675,7 +2675,7 @@ class IysFunctionalAreasPlugin extends IysSearchPlugin {
     //           });
     //   } else {
     //       console.log("Searching for:", query);
-    //       fetch(`https://uat-lambdaapi.iysskillstech.com/latest/dev-api/search-category-skills/?q=${encodeURIComponent(query)}&limit=10`,{ signal: controller.signal })
+    //       fetch(`https://uat-lambdaapi.iysskillstech.com/latest/dev-api/search-category-skills/?q=${encodeURIComponent(query)}&limit=10&asso_key=AF`,{ signal: controller.signal })
     //           .then(response => response.json())
     //           .then(response => {
     //               dropdownMenu.innerHTML = "";
@@ -3102,8 +3102,8 @@ class IysFunctionalAreasPlugin extends IysSearchPlugin {
       activeFetchRequest = controller;
       
       const url = query 
-          ? `https://uat-lambdaapi.iysskillstech.com/latest/dev-api/search-category-skills/?q=${encodeURIComponent(query)}&limit=10`
-          : `https://uat-lambdaapi.iysskillstech.com/latest/dev-api/search-category-skills/?limit=10`;
+          ? `https://uat-lambdaapi.iysskillstech.com/latest/dev-api/search-category-skills/?q=${encodeURIComponent(query)}&limit=10&asso_key=AF`
+          : `https://uat-lambdaapi.iysskillstech.com/latest/dev-api/search-category-skills/?limit=10&asso_key=AF`;
       
       fetch(url, { signal: controller.signal })
           .then(response => response.json())
