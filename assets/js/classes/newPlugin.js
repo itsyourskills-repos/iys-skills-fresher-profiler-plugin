@@ -3101,8 +3101,8 @@ class IysFunctionalAreasPlugin extends IysSearchPlugin {
       activeFetchRequest = controller;
       
       const url = query 
-          ? `https://lambdaapi.iysskillstech.com/latest/dev-api/search-category-skills/?q=${encodeURIComponent(query)}&limit=10&asso_key=AF`
-          : `https://lambdaapi.iysskillstech.com/latest/dev-api/search-category-skills/?limit=10&asso_key=AF`;
+        ? `https://lambdaapi.iysskillstech.com/latest/dev-api/search-af-category-skills/?q=${encodeURIComponent(query)}&limit=10&asso_key=AF`
+        : `https://lambdaapi.iysskillstech.com/latest/dev-api/search-af-category-skills/?limit=10&asso_key=AF`;
       
       fetch(url, { signal: controller.signal })
           .then(response => response.json())
