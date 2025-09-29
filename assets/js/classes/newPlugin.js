@@ -5810,6 +5810,10 @@ class IysFunctionalAreasPlugin extends IysSearchPlugin {
     ratingBox.style.marginTop = "10px";
     ratingBox.style.backgroundColor = "#fff";
     ratingBox.style.boxShadow = "0px 4px 6px rgba(0, 0, 0, 0.1)";
+
+    ratingBox.addEventListener("click", (event) => {
+      event.stopPropagation();
+    });
     
     fetchData(url, "GET")
       .then((response) => {
@@ -10333,14 +10337,16 @@ class IysFunctionalAreasPlugin extends IysSearchPlugin {
   //   skillsContainer.setAttribute("id", "softskillparentaccordian");
   //   skillsContainer.setAttribute("data-mdb-target", "#soft-parent-skills");
   //   skillsContainer.style.textAlign = "left";
+  //   skillsContainer.style.backgroundColor = "#FFFFFF";
+  //   skillsContainer.style.padding = "10px";
 
   //   skills.forEach((skill) => {
   //     // if(skill.child_count >0 || skill.ratings.length >0){
-  //     const skillButton = document.createElement("button");
+  //     const skillButton = document.createElement("div");
   //     skillButton.className = "softskillbutton";
   //     skillButton.setAttribute("id", skill.path_addr + "button");
-  //     skillButton.style.border = "1px solid #4f4f4f";
-  //     skillButton.style.borderRadius = "20px";
+  //     // skillButton.style.border = "1px solid #4f4f4f";
+  //     // skillButton.style.borderRadius = "20px";
   //     skillButton.style.margin = "5px";
   //     skillButton.style.padding = "6px 12px";
   //     skillButton.style.background = "#FFFFFF";
@@ -10348,6 +10354,7 @@ class IysFunctionalAreasPlugin extends IysSearchPlugin {
   //     skillButton.style.color = "#4f4f4f";
   //     skillButton.style.fontWeight = "500";
   //     skillButton.style.fontSize = "14px";
+  //     skillButton.style.display = "block";
   //     skillButton.setAttribute("data-mdb-tooltip-init", "");
 
   //     const warningPopup = document.createElement("div");
@@ -10741,9 +10748,13 @@ class IysFunctionalAreasPlugin extends IysSearchPlugin {
           manageTooltip(hoverCircleImg, `${childCount} sub categories`);
           leftDiv.appendChild(hoverCircleImg);
         } else {
-          const placeholder = document.createElement("div");
-          placeholder.style.width = "20px";
-          leftDiv.appendChild(placeholder);
+          hoverCircleImg.src = `${imagePath}hovercircleminus.png`;
+          hoverCircleImg.alt = "circle";
+          hoverCircleImg.style.width = "20px";
+          hoverCircleImg.style.height = "20px";
+          hoverCircleImg.style.marginRight = "10px";
+          manageTooltip(hoverCircleImg, `${childCount} sub categories`);
+          leftDiv.appendChild(hoverCircleImg);
         }
     
         // 2. Skill Name
@@ -10779,7 +10790,7 @@ class IysFunctionalAreasPlugin extends IysSearchPlugin {
           starIcon.style.marginLeft = "10px";
           starIcon.style.cursor = "pointer";
           starIcon.addEventListener("click", (event) => {
-            // event.stopPropagation();
+            event.stopPropagation();
             // this.saveTheSkillComment("", "", skill, "");
             document.querySelectorAll(".rating-box").forEach((box) => {
               box.style.display = "none";
@@ -10821,7 +10832,7 @@ class IysFunctionalAreasPlugin extends IysSearchPlugin {
         skillButton.appendChild(warningPopup);
     
         // Click event logic (unchanged)
-        hoverCircleImg.addEventListener("click", async () => {
+        skillButton.addEventListener("click", async () => {
           if (skill.child_count === 0 && skill.ratings.length > 0) {
             console.log("zeroskill-data", skill);
             // this.changeRateModelElement(skill);
