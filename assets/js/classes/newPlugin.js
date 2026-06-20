@@ -4403,6 +4403,10 @@ class IysFunctionalAreasPlugin extends IysSearchPlugin {
             parentSkillDetailId: parentSkillDetailId,
             parentSkillDetail: response[1],
           });
+          window.parent.postMessage(
+            { type: 'NEW_SKILL_ADDED' },
+            '*'
+          );
         } else {
           addTolocalStorage({
             comment: commentValue,
@@ -4412,6 +4416,10 @@ class IysFunctionalAreasPlugin extends IysSearchPlugin {
             parentSkillDetailId: parentSkillDetailId,
             parentSkillDetail: null,
           });
+          window.parent.postMessage(
+            { type: 'NEW_SKILL_ADDED' },
+            '*'
+          );
         }
 
         this.updateProfileData();
@@ -4845,10 +4853,6 @@ class IysFunctionalAreasPlugin extends IysSearchPlugin {
                           this.saveTheSkillComment(comment, inputData, skillDetail, parentSkillDetailId, pill);
                           ratingBox.style.display = "none";
                           saveButton.style.display = "none";
-                          window.parent.postMessage(
-                            { type: 'NEW_SKILL_ADDED' },
-                            '*'
-                          );
                         }
                     }
                 });
